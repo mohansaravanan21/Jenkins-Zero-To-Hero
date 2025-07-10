@@ -26,8 +26,8 @@ pipeline {
       }
       steps {
         sh 'python --version'
-        sh 'pip install -r requirements.txt'
-        sh 'python hello.py'
+        sh 'pip install -r multi-stage-multi-agent/requirements.txt'
+        sh 'python multi-stage-multi-agent/hello.py'
       }
     }
   }
