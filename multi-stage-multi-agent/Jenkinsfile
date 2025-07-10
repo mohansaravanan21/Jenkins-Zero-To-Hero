@@ -26,6 +26,7 @@ pipeline {
       }
       steps {
         sh 'python --version'
+        sh 'echo $HOME'
         sh 'export HOME=/tmp && pip install --user --no-cache-dir -r multi-stage-multi-agent/requirements.txt'
         sh 'export HOME=/tmp && python multi-stage-multi-agent/hello.py'
       }
