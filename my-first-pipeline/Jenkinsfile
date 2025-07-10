@@ -8,5 +8,15 @@ pipeline {
         sh 'node --version'
       }
     }
+    stage('Build') {
+      steps {
+        sh 'npm install'
+        sh 'npm run build'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'echo "Deploying application..."'
+        sh 'echo "Deployment complete!"'
   }
 }
