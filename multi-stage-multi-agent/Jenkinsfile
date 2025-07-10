@@ -20,15 +20,11 @@ pipeline {
         sh 'node hello.js'
       }
     }
-    stage("Pyhon-App"){
-      agent {
-        docker { image 'python:3.9-slim' }
-      }
+    stage("Python-App"){
+      
       steps {
-        sh 'python --version'
-        sh 'echo $HOME'
-        sh 'export HOME=/tmp && pip install --user --no-cache-dir -r multi-stage-multi-agent/requirements.txt'
-        sh 'export HOME=/tmp && python multi-stage-multi-agent/hello.py'
+        sh 'sudo docker build -t my-flask-app .'
+        sh 'sudo docker run -p 5000:5000 my-flask-app'
       }
     }
   }
