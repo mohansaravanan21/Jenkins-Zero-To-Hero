@@ -18,5 +18,7 @@ pipeline {
       steps {
         sh 'echo "Deploying application..."'
         sh 'echo "Deployment complete!"'
+      }
+    }
   }
 }
