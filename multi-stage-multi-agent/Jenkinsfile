@@ -20,5 +20,14 @@ pipeline {
         sh 'node hello.js'
       }
     }
+    stage("Pyhon-App"){
+      agent {
+        docker { image 'python:3.9-slim' }
+      }
+      steps {
+        sh 'python --version'
+        sh 'python hello.py'
+      }
+    }
   }
 }
