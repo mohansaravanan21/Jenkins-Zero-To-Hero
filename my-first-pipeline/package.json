@@ -1,0 +1,12 @@
+{
+  "name": "my-first-pipeline",
+  "version": "1.0.0",
+  "description": "A simple Node.js project for Jenkins pipeline demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Building project...'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
