@@ -56,8 +56,6 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                        sh '''
-                        git config user.name "$GIT_USERNAME"
-                        git config user.email "your-email@example.com"
                         git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/mohansaravanan21/Jenkins-Zero-To-Hero.git
                         git checkout main
                         cat python-jenkins-argocd-k8s/deploy/deploy.yaml
