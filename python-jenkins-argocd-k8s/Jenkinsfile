@@ -65,10 +65,10 @@ pipeline {
                         sed -i "s|image: mohansaravanan212/cicd-e2e:.*|image: mohansaravanan212/cicd-e2e:${BUILD_NUMBER}|" python-jenkins-argocd-k8s/deploy/pod.yaml
                         cat python-jenkins-argocd-k8s/deploy/deploy.yaml
                         cat python-jenkins-argocd-k8s/deploy/pod.yaml
-                        git pull origin main --rebase
                         git add python-jenkins-argocd-k8s/deploy/deploy.yaml
                         git add python-jenkins-argocd-k8s/deploy/pod.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
+                        git pull origin main --rebase
                         git push -u origin main
                         '''                        
                     }
