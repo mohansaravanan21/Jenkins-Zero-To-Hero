@@ -34,6 +34,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh '''
                         echo 'Push to Repo'
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                         docker push mohansaravanan212/cicd-e2e:${BUILD_NUMBER}
                         '''
                     }
@@ -53,18 +54,20 @@ pipeline {
         stage('Update K8S manifest & push to Repo'){
             steps {
                 script{
-                    // withCredentials([usernamePassword(credentialsId: 'f87a34a8-0e09-45e7-b9cf-6dc68feac670', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        sh '''
+                    withCredentials([usernamePassword(credentialsId: 'github-credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                       sh '''
+                        git config user.name "$GIT_USERNAME"
+                        git config user.email "your-email@example.com"
+                        git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/mohansaravanan21/Jenkins-Zero-To-Hero.git
                         git checkout main
                         cat python-jenkins-argocd-k8s/deploy/deploy.yaml
                         sed -i "s|image: mohansaravanan212/cicd-e2e:.*|image: mohansaravanan212/cicd-e2e:${BUILD_NUMBER}|" python-jenkins-argocd-k8s/deploy/deploy.yaml
                         cat python-jenkins-argocd-k8s/deploy/deploy.yaml
                         git add python-jenkins-argocd-k8s/deploy/deploy.yaml
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
-                        git remote -v
                         git push -u origin main
                         '''                        
-                    // }
+                    }
                 }
             }
         }
