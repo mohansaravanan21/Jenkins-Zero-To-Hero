@@ -58,15 +58,16 @@ Hardware Recommendations:
    Minimum 2 GB RAM
    2 CPU cores
 sudo apt update && sudo apt install unzip -y
-sudo su -
-adduser sonarqube
+sudo adduser sonarqube
+sudo su - sonarqube
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
 unzip *
 chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
 chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
 cd sonarqube-9.4.0.54424/bin/linux-x86-64
-./sonar.sh start```
+./sonar.sh start
 
-Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` 
+Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000
+```
 
 
